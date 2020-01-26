@@ -4,4 +4,4 @@ RUN curl -L "https://github.com/aerogear/keycloak-metrics-spi/releases/download/
 
 ENTRYPOINT [ "/opt/jboss/tools/docker-entrypoint.sh" ]
 
-CMD ["-b", "0.0.0.0"]
+CMD ["-b", "0.0.0.0", "--server-config=/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml"]
