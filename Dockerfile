@@ -1,9 +1,9 @@
 FROM jboss/keycloak
 
-COPY loglevel.cli /opt/jboss/tools/cli
-COPY jgroups-jdbc-ping.cli /opt/jboss/tools/cli
-COPY standalone-ha-configuration.cli /opt/jboss/tools/cli
-COPY docker-entrypoint.sh /opt/jboss/tools/
+# COPY loglevel.cli /opt/jboss/tools/cli
+COPY JDBC_PING.cli /opt/jboss/tools/cli/jgroups/discovery
+# COPY standalone-ha-configuration.cli /opt/jboss/tools/cli
+# COPY docker-entrypoint.sh /opt/jboss/tools/
 
 RUN curl -L "https://github.com/aerogear/keycloak-metrics-spi/releases/download/1.0.4/keycloak-metrics-spi-1.0.4.jar" > /opt/jboss/keycloak/standalone/deployments/keycloak-metrics-spi-1.0.4.jar
 
