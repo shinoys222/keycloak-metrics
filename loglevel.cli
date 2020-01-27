@@ -1,0 +1,17 @@
+/subsystem=logging/logger=org.keycloak:add
+/subsystem=logging/logger=org.keycloak:write-attribute(name=level,value=${env.KEYCLOAK_LOGLEVEL:INFO})
+
+/subsystem=logging/root-logger=ROOT:change-root-log-level(level=${env.ROOT_LOGLEVEL:INFO})
+
+/subsystem=logging/root-logger=ROOT:remove-handler(name="FILE")
+/subsystem=logging/periodic-rotating-file-handler=FILE:remove
+
+/subsystem=logging/console-handler=CONSOLE:undefine-attribute(name=level)
+
+# Add dedicated eventsListener config element to allow configuring elements.
+/subsystem=keycloak-server/spi=eventsListener:add()
+/subsystem=keycloak-server/spi=eventsListener/provider=jboss-logging:add(enabled=true)
+
+# Propagate success events to INFO instead of DEBUG, to expose successful logins for log analysis
+/subsystem=keycloak-server/spi=eventsListener/provider=jboss-logging:write-attribute(name=properties.success-level,value=info)
+/subsystem=keycloak-server/spi=eventsListener/provider=jboss-logging:write-attribute(name=properties.error-level,value=warn)

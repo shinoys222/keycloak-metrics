@@ -1,0 +1,4 @@
+#Added jdbc_ping_cli commands
+embed-server --server-config=standalone-ha.xml 
+run-batch --file=/opt/jboss/tools/cli/jgroups-jdbc-ping.cli
+stop-embedded-server
