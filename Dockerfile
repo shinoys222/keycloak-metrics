@@ -1,6 +1,5 @@
 FROM jboss/keycloak
 
-COPY standalone-ha.xml /opt/jboss/keycloak/standalone/configuration
 COPY loglevel.cli /opt/jboss/tools/cli
 COPY jgroups-jdbc-ping.cli /opt/jboss/tools/cli
 COPY standalone-ha-configuration.cli /opt/jboss/startup-scripts
